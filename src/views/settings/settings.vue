@@ -1,26 +1,32 @@
 <template>
-  Settings
+  <a-form :model="apiKey">
+    <a-form-item label="TMDB API key">
+      <a-input v-model:value="apiKey" />
+      {{ getKey }}
+    </a-form-item>
+    <a-form-item>
+      <a-button type="primary" style="margin: 0 auto" @click="setKey">Save Chages</a-button>
+    </a-form-item>
+  </a-form>
 </template>
 
 <script>
-
 export default {
   name: 'Settings',
-  components: {},
   data() {
     return {
-      count: 0,
+      apiKey: '',
     };
   },
-  computed: {},
-  methods: {},
-  beforeCreate() {},
-  created() {},
-  beforeMount() {},
-  mounted() {},
-  beforeUpdate() {},
-  updated() {},
-  beforeUnmount() {},
-  unmounted() {},
+  computed: {
+    getKey() {
+      return this.$store.state.apiKey;
+    },
+  },
+  methods: {
+    setKey() {
+      this.$store.commit('setApiKey', this.apiKey);
+    },
+  },
 };
 </script>

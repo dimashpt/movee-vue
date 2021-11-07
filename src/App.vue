@@ -18,13 +18,13 @@
       </div>
     </a-layout-content>
     <a-layout-footer style="text-align: center">
-      Ant Design ©2018 Created by Ant UED
+      Vue Movee ©2021 Created by Dimas
     </a-layout-footer>
   </a-layout>
 </template>
 
 <script>
-import Header from './components/organisms/header.vue';
+import Header from '@/components/organisms/header.vue';
 
 export default {
   components: { Header },

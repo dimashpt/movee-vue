@@ -6,19 +6,9 @@
       theme="dark"
       mode="horizontal"
       :style="{ lineHeight: '64px' }">
-      <a-menu-item key="1">
-        <router-link to="/">
-          Movies
-        </router-link>
-      </a-menu-item>
-      <a-menu-item key="2">
-        <router-link to="/favourites">
-          Favourites
-        </router-link>
-      </a-menu-item>
-      <a-menu-item key="3">
-        <router-link to="/settings">
-          Settings
+      <a-menu-item v-for="route in getRoutes" :key="route.path">
+        <router-link :to="route.path">
+          {{ route.name }}
         </router-link>
       </a-menu-item>
     </a-menu>
@@ -27,30 +17,20 @@
 
 <script>
 import { ref } from 'vue';
+import { routes } from '@/router';
 
 export default {
   name: 'header',
+  created() {},
+  computed: {
+    getRoutes() {
+      return routes;
+    },
+  },
   setup() {
     return {
-      selectedKeys: ref(['1']),
+      selectedKeys: ref(['/']),
     };
   },
 };
 </script>
-
-<style>
-#components-layout-demo-fixed .logo {
-  width: 120px;
-  height: 31px;
-  background: rgba(255, 255, 255, 0.2);
-  margin: 16px 24px 16px 0;
-  float: left;
-}
-.site-layout .site-layout-background {
-  background: #fff;
-}
-
-[data-theme='dark'] .site-layout .site-layout-background {
-  background: #141414;
-}
-</style>
