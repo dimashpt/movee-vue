@@ -1,15 +1,5 @@
 <template>
-  <div class="home">
-    <button @click="count--">
-      Decrease
-    </button>
-    <h1>
-      {{ count }}
-    </h1>
-    <button @click="count++">
-      Increase
-    </button>
-  </div>
+  Home
 </template>
 
 <script>
