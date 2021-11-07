@@ -1,4 +1,5 @@
 <template>
+  <title>Home - Movies</title>
   Home
 </template>
 
@@ -7,11 +8,7 @@
 export default {
   name: 'Home',
   components: {},
-  data() {
-    return {
-      count: 0,
-    };
-  },
+  data() {},
   computed: {},
   methods: {},
   beforeCreate() {},
