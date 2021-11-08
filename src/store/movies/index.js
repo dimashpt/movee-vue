@@ -8,6 +8,7 @@ export default createStore({
     apiKey: '',
     genres: [],
     discover: [],
+    favourites: [],
   },
   mutations: {
     setApiKey(state, apiKey) {
@@ -18,6 +19,15 @@ export default createStore({
     },
     setDiscover(state, data) {
       state.discover = data;
+    },
+    addFavourite(state, data) {
+      const isFavouriteExist = state.favourites.find((movie) => movie.id === data.id);
+
+      if (isFavouriteExist) {
+        state.favourites.splice(state.favourites.indexof(data), 1);
+      } else {
+        state.favourites.push(data);
+      }
     },
   },
   actions,
