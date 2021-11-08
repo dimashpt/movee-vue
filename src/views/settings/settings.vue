@@ -1,4 +1,9 @@
 <template>
+  <a-row style="margin-bottom: 20px">
+    <a-col :span="auto">
+      <h2>Settings</h2>
+    </a-col>
+  </a-row>
   <a-form :model="apiKey">
     <a-form-item label="TMDB API key">
       <a-input v-model:value="apiKey" />

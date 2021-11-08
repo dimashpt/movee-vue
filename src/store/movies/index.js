@@ -1,4 +1,5 @@
 import { createStore } from 'vuex';
+import { message } from 'ant-design-vue';
 import Cookies from 'js-cookie';
 import createPersistedState from 'vuex-persistedstate';
 import actions from './actions';
@@ -21,11 +22,13 @@ export default createStore({
       state.discover = data;
     },
     addFavourite(state, data) {
-      const isFavouriteExist = state.favourites.find((movie) => movie.id === data.id);
+      const isFavouriteExist = !!state.favourites.find((movie) => movie.id === data.id);
 
       if (isFavouriteExist) {
-        state.favourites.splice(state.favourites.indexof(data), 1);
+        message.success(`${data.title} removed from your favourites`);
+        state.favourites.splice(state.favourites.indexOf(data), 1);
       } else {
+        message.success(`${data.title} added to your favourites`);
         state.favourites.push(data);
       }
     },
