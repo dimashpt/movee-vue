@@ -38,6 +38,9 @@ export default {
     HeartOutlined,
     HeartTwoTone,
   },
+  created() {
+    // console.log(this.$store.state);
+  },
   computed: {
     imagePath() {
       return ENDPOINTS.IMAGE;
@@ -46,10 +49,10 @@ export default {
   methods: {
     moment,
     addFavourite(data) {
-      this.$store.commit('addFavourite', data);
+      this.$store.commit('favourites/addFavourite', data);
     },
     isFavourite(data) {
-      return !!this.$store.state.favourites.find((movie) => movie.id === data.id);
+      return !!this.$store.state.favourites.list.find((movie) => movie.id === data.id);
     },
   },
 };

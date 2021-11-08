@@ -25,7 +25,7 @@
   </a-row>
   <a-row :gutter="[15, 15]">
     <a-col
-      v-for="movie in $store.state.discover"
+      v-for="movie in $store.state.home.discover"
       :key="movie.id"
       :xl="3"
       :lg="6"
@@ -53,7 +53,7 @@ export default {
   },
   computed: {
     genres() {
-      return this.$store.state.genres;
+      return this.$store.state.home.genres;
     },
   },
   methods: {
@@ -62,8 +62,8 @@ export default {
     },
   },
   created() {
-    this.$store.dispatch({ type: 'getGenres' });
-    this.$store.dispatch({ type: 'getDiscover' });
+    this.$store.dispatch('home/getGenres');
+    this.$store.dispatch('home/getDiscover');
   },
   beforeMount() {},
   mounted() {},

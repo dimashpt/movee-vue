@@ -6,7 +6,7 @@
   </a-row>
   <a-row :gutter="[15, 15]">
     <a-col
-      v-for="movie in $store.state.favourites"
+      v-for="movie in $store.state.favourites.list"
       :key="movie.id"
       :xl="3"
       :lg="6"
@@ -27,30 +27,8 @@ export default {
   components: {
     MovieCard,
   },
-  data() {
-    return {
-      genre: 'latest',
-    };
-  },
-  computed: {
-    genres() {
-      return this.$store.state.genres;
-    },
-  },
-  methods: {
-    onGenreChange(value) {
-      this.genre = value;
-    },
-  },
-  created() {
-    this.$store.dispatch({ type: 'getGenres' });
-    this.$store.dispatch({ type: 'getDiscover' });
-  },
-  beforeMount() {},
-  mounted() {},
-  beforeUpdate() {},
-  updated() {},
-  beforeUnmount() {},
-  unmounted() {},
+  data() {},
+  computed: {},
+  methods: {},
 };
 </script>
