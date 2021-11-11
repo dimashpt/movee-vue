@@ -3,6 +3,8 @@ export default {
     state.genres = data;
   },
   getDiscover(state, data) {
-    state.discover = data;
+    data.forEach((movie) => {
+      state.discover.push(movie);
+    });
   },
 };

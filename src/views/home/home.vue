@@ -36,6 +36,9 @@
       <movie-card :movie="movie" />
     </a-col>
   </a-row>
+  <a-button type="primary" block style="margin-top: 10px" @click="handleGetDiscover">
+    Load more
+  </a-button>
 </template>
 
 <script>
@@ -49,6 +52,7 @@ export default {
   data() {
     return {
       genre: 'latest',
+      page: 0,
     };
   },
   computed: {
@@ -60,10 +64,17 @@ export default {
     onGenreChange(value) {
       this.genre = value;
     },
+    handleGetDiscover() {
+      this.page += 1;
+      this.$store.dispatch('home/getDiscover', this.page);
+    },
+    handleGetGenres() {
+      this.$store.dispatch('home/getGenres');
+    },
   },
   created() {
-    this.$store.dispatch('home/getGenres');
-    this.$store.dispatch('home/getDiscover');
+    this.handleGetDiscover();
+    this.handleGetGenres();
   },
   beforeMount() {},
   mounted() {},

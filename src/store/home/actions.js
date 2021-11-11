@@ -12,9 +12,9 @@ export default {
       console.log(error);
     }
   },
-  async getDiscover({ commit, rootState }) {
+  async getDiscover({ commit, rootState }, page) {
     try {
-      const results = await MOVIES.getDiscover(rootState.apiKey);
+      const results = await MOVIES.getDiscover(rootState.apiKey, page);
 
       if (results) {
         commit('getDiscover', results.data.results);

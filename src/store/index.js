@@ -1,5 +1,6 @@
 import { createStore } from 'vuex';
 import createPersistedState from 'vuex-persistedstate';
+import Cookies from 'js-cookie';
 import favourites from './favourites';
 import home from './home';
 
@@ -17,6 +18,13 @@ export default createStore({
     home,
   },
   plugins: [
-    createPersistedState(),
+    createPersistedState({
+      paths: ['apiKey', 'favourites'],
+      storage: {
+        getItem: (key) => Cookies.get(key),
+        setItem: (key, value) => Cookies.set(key, value, { expires: 3, secure: true }),
+        removeItem: (key) => Cookies.remove(key),
+      },
+    }),
   ],
 });
