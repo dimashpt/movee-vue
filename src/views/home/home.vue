@@ -4,7 +4,12 @@
       <h2>Genre</h2>
     </a-col>
     <a-col style="margin-left: 20px">
-      <a-select v-model:value="genre" @change="onGenreChange" style="width: 200px;">
+      <a-select
+        v-model:value="genre"
+        @click="handleGetGenres"
+        @change="onGenreChange"
+        style="width: 200px"
+      >
         <a-select-opt-group>
           <template #label>
             <span>Default</span>
@@ -36,7 +41,12 @@
       <movie-card :movie="movie" />
     </a-col>
   </a-row>
-  <a-button type="primary" block style="margin-top: 10px" @click="handleGetDiscover">
+  <a-button
+    type="primary"
+    block
+    style="margin-top: 10px"
+    @click="handleGetDiscover(true)"
+  >
     Load more
   </a-button>
 </template>
@@ -52,7 +62,7 @@ export default {
   data() {
     return {
       genre: 'latest',
-      page: 0,
+      page: 1,
     };
   },
   computed: {
@@ -63,10 +73,17 @@ export default {
   methods: {
     onGenreChange(value) {
       this.genre = value;
+      this.handleGetDiscover();
     },
-    handleGetDiscover() {
-      this.page += 1;
-      this.$store.dispatch('home/getDiscover', this.page);
+    handleGetDiscover(isLoadMore) {
+      if (isLoadMore) this.page += 1;
+      else this.page = 1;
+
+      this.$store.dispatch('home/getDiscover', {
+        page: this.page,
+        genre: this.genre === 'latest' ? undefined : this.genre,
+        isLoadMore,
+      });
     },
     handleGetGenres() {
       this.$store.dispatch('home/getGenres');
@@ -74,7 +91,6 @@ export default {
   },
   created() {
     this.handleGetDiscover();
-    this.handleGetGenres();
   },
   beforeMount() {},
   mounted() {},

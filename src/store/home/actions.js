@@ -12,12 +12,15 @@ export default {
       console.log(error);
     }
   },
-  async getDiscover({ commit, rootState }, page) {
+  async getDiscover({ commit, rootState }, data) {
     try {
-      const results = await MOVIES.getDiscover(rootState.apiKey, page);
+      const results = await MOVIES.getDiscover(rootState.apiKey, data);
 
       if (results) {
-        commit('getDiscover', results.data.results);
+        commit('getDiscover', {
+          data: results.data.results,
+          isLoadMore: data.isLoadMore,
+        });
       }
     } catch (error) {
       console.log(error);
